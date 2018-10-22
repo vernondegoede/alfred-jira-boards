@@ -19,12 +19,13 @@ const showProjects = projects => {
   const matchingProjects = alfy.matches(alfy.input, projects, "name");
 
   alfy.output(
-    matchingProjects.map(({ name, key, projectTypeKey, avatarUrls }) => ({
+    matchingProjects.map(({ name, key, projectTypeKey, avatarUrls, self }) => ({
       title: name,
       subtitle: `${key} - ${projectTypeKey.toUpperCase()}`,
       icon: {
         path: avatarUrls["48x48"]
-      }
+      },
+      arg: `https://${process.env.jiraHost}/projects/${key}/issues`
     }))
   );
 };
